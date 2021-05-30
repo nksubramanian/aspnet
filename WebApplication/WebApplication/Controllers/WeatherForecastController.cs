@@ -35,5 +35,15 @@ namespace WebApplication.Controllers
             })
             .ToArray();
         }
+
+
+        [HttpGet("GetHeaderData")]
+        public string GetHeaderData([FromHeader]string developer, [FromHeader]string dev)
+        {
+            return $"Name= {developer} " + $" Name= {dev}";
+        }
+
+
+
     }
 }
