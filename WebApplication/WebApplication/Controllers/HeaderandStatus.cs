@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace WebApplication.Controllers
@@ -35,8 +36,17 @@ namespace WebApplication.Controllers
         [Route("AnotherMethod")]
         public IActionResult AnotherMethod()
         {
+            string response = "Here is the response";
             HttpContext.Response.Headers.Add("secondmethod", "thisone");
             return StatusCode(405);
+        }
+
+
+        [HttpGet("write-body")]
+        public void WriteBody()
+        {
+            byte[] data = Encoding.UTF8.GetBytes("output");
+            Response.Body.WriteAsync(data, 0, data.Length).Wait();
         }
 
 
