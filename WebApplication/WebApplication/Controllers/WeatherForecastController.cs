@@ -44,6 +44,26 @@ namespace WebApplication.Controllers
         }
 
 
+        [HttpPost("/reading-body")]
+        public string ReadBody([FromBody] RequestBody requestBody)
+        {
+            return $"The header value is name:{requestBody.Name} city:{requestBody.City}";
+        }
+
+        public class RequestBody
+        {
+            public string Name { get; set; }
+            public string City { get; set; }
+        }
+
+
+        [HttpGet("{id}/{first}")]
+        public string ReadPath(string id, string first)
+        {
+            return $"The header value is name:{id} city:{first}";
+        }
+
+
 
     }
 }
