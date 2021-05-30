@@ -54,7 +54,13 @@ namespace WebApplication
             {
                 if (context.Request.Path.Value.Contains("middleware"))
                 {
-                    await context.Response.WriteAsync($"Hello there from the first middleware");
+                    string buil= "";
+                    foreach (var header in context.Request.Headers)
+                    {
+                        buil = buil+$"{header.Key}:{header.Value}";
+                    }
+                    await context.Response.WriteAsync(buil);
+                    //await context.Response.WriteAsync($"Hello there from the first middleware");
                 }
                 else 
                 {
