@@ -10,10 +10,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using WebApplication.Controllers;
 
 namespace WebApplication
@@ -57,6 +59,20 @@ namespace WebApplication
                 if (context.Request.Path.Value.Contains("middleware"))
                 {
                     StringBuilder sb = new StringBuilder();
+                    NameValueCollection qscoll = HttpUtility.ParseQueryString(context.Request.QueryString.Value);
+                    foreach (var key in qscoll.AllKeys)
+                    {
+                        sb.Append($"querystring: {key}:");
+                        var value = qscoll.GetValues(key);
+                        foreach (var v in value)
+                        {
+                            sb.Append($"{v}: ");
+                        }
+                        sb.AppendLine();
+                    }
+                    sb.AppendLine();
+
+                    
                     foreach (var header in context.Request.Headers)
                     {
                         sb.AppendLine($"Header -> {header.Key}:{header.Value}");
