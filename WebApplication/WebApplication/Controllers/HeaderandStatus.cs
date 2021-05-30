@@ -56,7 +56,9 @@ namespace WebApplication.Controllers
             HttpContext.Response.Headers.Add("HeaderCreated", "thisone");
             HttpContext.Response.StatusCode = 210;
             byte[] data = Encoding.UTF8.GetBytes("output");
+            byte[] data1 = Encoding.UTF8.GetBytes("second output");
             Response.Body.WriteAsync(data, 0, data.Length).Wait();
+            Response.Body.WriteAsync(data1, 0, data1.Length).Wait();
         }
 
     }
