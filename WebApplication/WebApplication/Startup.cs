@@ -10,7 +10,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using WebApplication.Controllers;
 
@@ -59,8 +61,10 @@ namespace WebApplication
                     {
                         buil = buil+$"{header.Key}:{header.Value}";
                     }
-                    await context.Response.WriteAsync(buil);
-                    //await context.Response.WriteAsync($"Hello there from the first middleware");
+                    //await context.Response.WriteAsync(buil);
+                    var reader = new StreamReader(context.Request.Body, Encoding.UTF8);
+                    var body = await reader.ReadToEndAsync().ConfigureAwait(false);
+                    await context.Response.WriteAsync(body);
                 }
                 else 
                 {
