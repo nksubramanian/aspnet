@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication.Controllers;
 
 namespace WebApplication
 {
@@ -32,6 +33,15 @@ namespace WebApplication
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication", Version = "v1" });
             });
+            //services.AddScoped<ObjectOne>();
+            //services.AddScoped<ObjectTwo>();
+
+
+            //services.AddSingleton<ObjectOne>();
+            //services.AddSingleton<ObjectTwo>();
+
+            services.AddTransient<ObjectOne>();
+            services.AddTransient<ObjectTwo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
