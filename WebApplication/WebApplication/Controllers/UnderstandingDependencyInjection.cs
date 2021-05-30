@@ -34,6 +34,7 @@ namespace WebApplication.Controllers
 
             int c = y.ob.GetHashCode();
             string object_one_of_object_two = c.ToString();
+            HttpContext.Response.StatusCode = 300;
             return "object1 is " + object_one + " object2 " + object_two + " object one of object two " + object_one_of_object_two;
 
 
