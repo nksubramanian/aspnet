@@ -63,6 +63,13 @@ namespace WebApplication.Controllers
             return $"The header value is name:{id} city:{first}";
         }
 
+        [HttpGet("reading-query")]
+        public string ReadQuery([FromQuery(Name = "name")] string name, [FromQuery(Name = "age")] int age)
+        {
+            age++;
+            return $"The header value is name:{name} age:{age}";
+        }
+
 
 
     }
