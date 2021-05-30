@@ -56,15 +56,15 @@ namespace WebApplication
             {
                 if (context.Request.Path.Value.Contains("middleware"))
                 {
-                    string buil= "";
+                    StringBuilder sb = new StringBuilder();
                     foreach (var header in context.Request.Headers)
                     {
-                        buil = buil+$"{header.Key}:{header.Value}";
+                        sb.AppendLine($"Header -> {header.Key}:{header.Value}");
                     }
-                    //await context.Response.WriteAsync(buil);
                     var reader = new StreamReader(context.Request.Body, Encoding.UTF8);
                     var body = await reader.ReadToEndAsync().ConfigureAwait(false);
-                    await context.Response.WriteAsync(body);
+                    sb.AppendLine($"body -> {body}");
+                    await context.Response.WriteAsync(sb.ToString());
                 }
                 else 
                 {
