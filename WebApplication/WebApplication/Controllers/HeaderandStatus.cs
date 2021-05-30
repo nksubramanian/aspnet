@@ -50,5 +50,14 @@ namespace WebApplication.Controllers
         }
 
 
+        [HttpGet("write-all")]
+        public void WriteAll()
+        {
+            HttpContext.Response.Headers.Add("HeaderCreated", "thisone");
+            HttpContext.Response.StatusCode = 210;
+            byte[] data = Encoding.UTF8.GetBytes("output");
+            Response.Body.WriteAsync(data, 0, data.Length).Wait();
+        }
+
     }
 }
